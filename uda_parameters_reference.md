@@ -127,29 +127,29 @@ best.pt
 
 ```bash
 /mnt/yihao/envs/ultralytics/bin/python scripts/train_elevator.py \
-    --unsup \
-    --target-data /path/to/elevator-target.yaml \
-    --device 0,1 \
-    --batch 64 \
-    --epochs 150 \
-    --patience 0 \
-    --save-period 10 \
-    --name train_qwen_adv_unsup_150_v3 \
-    --weights /mnt/yihao/codes/buttonDet/ultralytics/runs/elevator/1010/train_qwen_adv_150/weights/best.pt
+  --unsup \
+  --target-data /path/to/elevator-target.yaml \
+  --device 0,1 \
+  --batch 64 \
+  --epochs 150 \
+  --patience 0 \
+  --save-period 10 \
+  --name train_qwen_adv_unsup_150_v3 \
+  --weights /mnt/yihao/codes/buttonDet/ultralytics/runs/elevator/1010/train_qwen_adv_150/weights/best.pt
 ```
 
 ### 6.2 不设置目标数据，按 epoch 内部划分源数据
 
 ```bash
 /mnt/yihao/envs/ultralytics/bin/python scripts/train_elevator.py \
-    --unsup \
-    --device 0,1 \
-    --batch 64 \
-    --epochs 150 \
-    --patience 0 \
-    --save-period 10 \
-    --name train_qwen_adv_unsup_150_v3 \
-    --weights /mnt/yihao/codes/buttonDet/ultralytics/runs/elevator/1010/train_qwen_adv_150/weights/best.pt
+  --unsup \
+  --device 0,1 \
+  --batch 64 \
+  --epochs 150 \
+  --patience 0 \
+  --save-period 10 \
+  --name train_qwen_adv_unsup_150_v3 \
+  --weights /mnt/yihao/codes/buttonDet/ultralytics/runs/elevator/1010/train_qwen_adv_150/weights/best.pt
 ```
 
 ## 7. 训练和测试灯状态阈值的区别
@@ -163,8 +163,8 @@ best.pt
 
 ```bash
 /mnt/yihao/envs/ultralytics/bin/python scripts/val_elevator.py \
-    --weights /path/to/model.pt \
-    --light-threshold 0.3
+  --weights /path/to/model.pt \
+  --light-threshold 0.3
 ```
 
 降低测试阶段的 `light_threshold` 不会改变 UDA 训练时已经生成的伪标签。
