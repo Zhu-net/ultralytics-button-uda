@@ -330,9 +330,7 @@ class ElevatorDetect(Detect):
 
     def _inference(self, x: dict[str, torch.Tensor]) -> torch.Tensor:
         """Decode boxes and append slot probabilities and light probability in aligned anchor order."""
-        return torch.cat(
-            (super()._inference(x), x["slot1"].softmax(1), x["slot2"].softmax(1), x["light"].sigmoid()), 1
-        )
+        return torch.cat((super()._inference(x), x["slot1"].softmax(1), x["slot2"].softmax(1), x["light"].sigmoid()), 1)
 
 
 class Segment(Detect):
