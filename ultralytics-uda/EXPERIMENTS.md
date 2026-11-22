@@ -20,57 +20,57 @@
 
 ## 训练目录与参数
 
-| 目录 | 关键变量 | 实际轮数 | 源域 best epoch | 源域 best mAP50-95 | 最后一轮 mAP50-95 |
-| --- | --- | ---: | ---: | ---: | ---: |
-| `runs/elevator/1010/train_qwen_adv_unsup_150` | 高阈值：conf 0.9、IoU 0.7；patience 50 | 51 | 1 | 0.8442 | 0.8232 |
-| `runs/elevator/1010/train_qwen_adv_unsup_150_v2` | 与 v1 同阈值，patience 0，完整 150 轮 | 150 | 1 | 0.8442 | 0.8139 |
-| `runs/elevator/1010/train_qwen_adv_unsup_150_v3` | conf/IoU 0.6，楼层/灯光阈值 0.7 | 150 | 1 | 0.8442 | 0.8227 |
-| `runs/elevator/1021/train_adv_unsup_150` | v3 阈值，显式 `elevator-target.yaml` | 150 | 1 | 0.8439 | 0.8025 |
-| `runs/elevator/1023_test/train_flips0_mosaic0.5_closemosaic30` | 640；fliplr 0、mosaic 0.5、close_mosaic 30 | 150 | 3 | 0.8440 | 0.8098 |
-| `runs/elevator/1023_test/train_imgsz960` | 960；默认 fliplr 0.5、mosaic 1.0 | 150 | 11 | 0.8391 | 0.8256 |
-| `runs/elevator/1023_test/train_flips0_mosaic0.5_closemosaic30_imgsz960` | 960 加增强消融 | 150 | 13 | 0.8407 | 0.8231 |
-| `runs/elevator/1026/train_unsup_150` | 更新为 `*_1026.yaml` 源域和目标域数据 | 150 | 1 | 0.8437 | 0.7846 |
+| 目录                                                                    | 关键变量                                   | 实际轮数 | 源域 best epoch | 源域 best mAP50-95 | 最后一轮 mAP50-95 |
+| ----------------------------------------------------------------------- | ------------------------------------------ | -------: | --------------: | -----------------: | ----------------: |
+| `runs/elevator/1010/train_qwen_adv_unsup_150`                           | 高阈值：conf 0.9、IoU 0.7；patience 50     |       51 |               1 |             0.8442 |            0.8232 |
+| `runs/elevator/1010/train_qwen_adv_unsup_150_v2`                        | 与 v1 同阈值，patience 0，完整 150 轮      |      150 |               1 |             0.8442 |            0.8139 |
+| `runs/elevator/1010/train_qwen_adv_unsup_150_v3`                        | conf/IoU 0.6，楼层/灯光阈值 0.7            |      150 |               1 |             0.8442 |            0.8227 |
+| `runs/elevator/1021/train_adv_unsup_150`                                | v3 阈值，显式 `elevator-target.yaml`       |      150 |               1 |             0.8439 |            0.8025 |
+| `runs/elevator/1023_test/train_flips0_mosaic0.5_closemosaic30`          | 640；fliplr 0、mosaic 0.5、close_mosaic 30 |      150 |               3 |             0.8440 |            0.8098 |
+| `runs/elevator/1023_test/train_imgsz960`                                | 960；默认 fliplr 0.5、mosaic 1.0           |      150 |              11 |             0.8391 |            0.8256 |
+| `runs/elevator/1023_test/train_flips0_mosaic0.5_closemosaic30_imgsz960` | 960 加增强消融                             |      150 |              13 |             0.8407 |            0.8231 |
+| `runs/elevator/1026/train_unsup_150`                                    | 更新为 `*_1026.yaml` 源域和目标域数据      |      150 |               1 |             0.8437 |            0.7846 |
 
 这里的 best epoch 只由训练过程中使用的源域验证 mAP50-95 决定，并不等价于目标域最优轮次。
 
 ## 1010：伪标签阈值迭代结果
 
-| 目录 | 权重/测试集 | mAP50 | mAP50-95 | 楼层完全准确率 | 灯光 F1 |
-| --- | --- | ---: | ---: | ---: | ---: |
-| `runs/elevator/1010/test_qwen_adv_unsup_150_best` | v1 best，标准测试 | 0.9692 | 0.8447 | 0.9653 | 0.8729 |
-| `runs/elevator/1010/test_qwen_adv_unsup_150_last` | v1 last，标准测试 | 0.9691 | 0.8226 | 0.9810 | 0.9771 |
-| `runs/elevator/1010/test_qwen_adv_unsup_150_v2_last` | v2 last，标准测试 | 0.9694 | 0.8160 | 0.9828 | 0.9840 |
-| `runs/elevator/1010/test_qwen_adv_unsup_150_v2_u2v10929-1020` | v2，U2V 时间窗 | 0.9430 | 0.8437 | 0.9283 | 0.8750 |
-| `runs/elevator/1010/test_qwen_adv_unsup_150_v3_last` | v3 last，标准测试 | 0.9765 | 0.8237 | 0.9833 | 0.9839 |
-| `runs/elevator/1010/test_qwen_adv_unsup_150_v3_u2v10929-1020` | v3，U2V 时间窗 | 0.9684 | 0.8792 | 0.9299 | 0.8590 |
+| 目录                                                          | 权重/测试集       |  mAP50 | mAP50-95 | 楼层完全准确率 | 灯光 F1 |
+| ------------------------------------------------------------- | ----------------- | -----: | -------: | -------------: | ------: |
+| `runs/elevator/1010/test_qwen_adv_unsup_150_best`             | v1 best，标准测试 | 0.9692 |   0.8447 |         0.9653 |  0.8729 |
+| `runs/elevator/1010/test_qwen_adv_unsup_150_last`             | v1 last，标准测试 | 0.9691 |   0.8226 |         0.9810 |  0.9771 |
+| `runs/elevator/1010/test_qwen_adv_unsup_150_v2_last`          | v2 last，标准测试 | 0.9694 |   0.8160 |         0.9828 |  0.9840 |
+| `runs/elevator/1010/test_qwen_adv_unsup_150_v2_u2v10929-1020` | v2，U2V 时间窗    | 0.9430 |   0.8437 |         0.9283 |  0.8750 |
+| `runs/elevator/1010/test_qwen_adv_unsup_150_v3_last`          | v3 last，标准测试 | 0.9765 |   0.8237 |         0.9833 |  0.9839 |
+| `runs/elevator/1010/test_qwen_adv_unsup_150_v3_u2v10929-1020` | v3，U2V 时间窗    | 0.9684 |   0.8792 |         0.9299 |  0.8590 |
 
 ## 1021：显式目标域结果
 
-| 目录 | 说明 | mAP50 | mAP50-95 | 楼层完全准确率 | 灯光 F1 |
-| --- | --- | ---: | ---: | ---: | ---: |
-| `runs/elevator/1021/test_adv_unsup_150_last` | 目标域 UDA last，标准测试 | 0.9775 | 0.8036 | 0.9841 | 0.9847 |
-| `runs/elevator/1021/test_qwen_adv_150_u2v10929-1020` | 1021 组的 qwen-adv U2V 对照；未保存权重参数 | 0.9713 | 0.8865 | 0.9348 | 0.8235 |
+| 目录                                                 | 说明                                        |  mAP50 | mAP50-95 | 楼层完全准确率 | 灯光 F1 |
+| ---------------------------------------------------- | ------------------------------------------- | -----: | -------: | -------------: | ------: |
+| `runs/elevator/1021/test_adv_unsup_150_last`         | 目标域 UDA last，标准测试                   | 0.9775 |   0.8036 |         0.9841 |  0.9847 |
+| `runs/elevator/1021/test_qwen_adv_150_u2v10929-1020` | 1021 组的 qwen-adv U2V 对照；未保存权重参数 | 0.9713 |   0.8865 |         0.9348 |  0.8235 |
 
 第二个目录缺少 `args.yaml` 和明确权重路径，因此文档只记录其目录命名所表达的对照关系，不把它
 强行归因于 `train_adv_unsup_150`。
 
 ## 1023：分辨率与增强消融
 
-| 目录 | 设置/数据集 | mAP50 | mAP50-95 | 楼层完全准确率 | 灯光 F1 |
-| --- | --- | ---: | ---: | ---: | ---: |
-| `runs/elevator/1023_test/val_flips0_mosaic0.5_closemosaic30` | 640 增强消融，val | 0.9774 | 0.8107 | 0.9844 | 0.9823 |
-| `runs/elevator/1023_test/test_flips0_mosaic0.5_closemosaic30` | 640 增强消融，test | 0.9640 | 0.8799 | 0.9336 | 0.8366 |
-| `runs/elevator/1023_test/val_imgsz960` | 960 默认增强，val | 0.9806 | 0.8273 | 0.9792 | 0.9864 |
-| `runs/elevator/1023_test/test_imgsz960` | 960 默认增强，test | 0.9373 | 0.8016 | 0.9138 | 0.7919 |
-| `runs/elevator/1023_test/val_flips0_mosaic0.5_closemosaic30_imgsz960` | 960 增强消融，val | 0.9778 | 0.8220 | 0.9841 | 0.9857 |
-| `runs/elevator/1023_test/test_flips0_mosaic0.5_closemosaic30_imgsz960` | 960 增强消融，test | 0.9388 | 0.8024 | 0.9128 | 0.8366 |
+| 目录                                                                   | 设置/数据集        |  mAP50 | mAP50-95 | 楼层完全准确率 | 灯光 F1 |
+| ---------------------------------------------------------------------- | ------------------ | -----: | -------: | -------------: | ------: |
+| `runs/elevator/1023_test/val_flips0_mosaic0.5_closemosaic30`           | 640 增强消融，val  | 0.9774 |   0.8107 |         0.9844 |  0.9823 |
+| `runs/elevator/1023_test/test_flips0_mosaic0.5_closemosaic30`          | 640 增强消融，test | 0.9640 |   0.8799 |         0.9336 |  0.8366 |
+| `runs/elevator/1023_test/val_imgsz960`                                 | 960 默认增强，val  | 0.9806 |   0.8273 |         0.9792 |  0.9864 |
+| `runs/elevator/1023_test/test_imgsz960`                                | 960 默认增强，test | 0.9373 |   0.8016 |         0.9138 |  0.7919 |
+| `runs/elevator/1023_test/val_flips0_mosaic0.5_closemosaic30_imgsz960`  | 960 增强消融，val  | 0.9778 |   0.8220 |         0.9841 |  0.9857 |
+| `runs/elevator/1023_test/test_flips0_mosaic0.5_closemosaic30_imgsz960` | 960 增强消融，test | 0.9388 |   0.8024 |         0.9128 |  0.8366 |
 
 ## 1026：最终数据版本
 
-| 目录 | 数据集 | mAP50 | mAP50-95 | 楼层完全准确率 | 灯光 F1 |
-| --- | --- | ---: | ---: | ---: | ---: |
-| `runs/elevator/1026/val_unsup_150` | 1026 val | 0.9767 | 0.7851 | 0.9896 | 0.9840 |
-| `runs/elevator/1026/test_unsup_150` | 1026 test；完整可视化 | 0.9822 | 0.8541 | 0.9821 | 0.8750 |
+| 目录                                | 数据集                |  mAP50 | mAP50-95 | 楼层完全准确率 | 灯光 F1 |
+| ----------------------------------- | --------------------- | -----: | -------: | -------------: | ------: |
+| `runs/elevator/1026/val_unsup_150`  | 1026 val              | 0.9767 |   0.7851 |         0.9896 |  0.9840 |
+| `runs/elevator/1026/test_unsup_150` | 1026 test；完整可视化 | 0.9822 |   0.8541 |         0.9821 |  0.8750 |
 
 ## 简单分析
 
