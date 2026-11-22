@@ -37,9 +37,13 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--project", type=Path, default=ROOT / "runs/elevator")
     parser.add_argument("--name", default="val")
     parser.add_argument("--plots", action="store_true", help="Save standard validation plots and batch previews.")
-    parser.add_argument("--visualize", action="store_true", help="Save annotated predictions for selected split images.")
+    parser.add_argument(
+        "--visualize", action="store_true", help="Save annotated predictions for selected split images."
+    )
     parser.add_argument("--visualize-count", type=int, default=200)
-    parser.add_argument("--visual-conf", type=float, default=0.25, help="Confidence threshold used only for visualizations.")
+    parser.add_argument(
+        "--visual-conf", type=float, default=0.25, help="Confidence threshold used only for visualizations."
+    )
     parser.add_argument(
         "--iou", type=float, default=0.5, help="NMS and fail-case matching IoU threshold for visualizations."
     )
