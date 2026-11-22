@@ -19,7 +19,7 @@ from ultralytics.engine.trainer import BaseTrainer
 from ultralytics.models import yolo
 from ultralytics.nn.modules import ElevatorDetect
 from ultralytics.nn.tasks import DetectionModel
-from ultralytics.utils import DEFAULT_CFG, LOGGER, LOCAL_RANK, RANK, nms
+from ultralytics.utils import DEFAULT_CFG, LOCAL_RANK, LOGGER, RANK, nms
 from ultralytics.utils.ops import xyxy2xywh
 from ultralytics.utils.patches import override_configs
 from ultralytics.utils.plotting import plot_images, plot_labels
@@ -328,10 +328,7 @@ class DetectionTrainer(BaseTrainer):
         classes = torch.cat(classes)
         floor_mask = classes.squeeze(1).long() == 0
         min_guard_boxes = max(20, len(accepted_images) * 2)
-        if (
-            len(classes) >= min_guard_boxes
-            and floor_mask.float().mean() > self.args.pseudo_max_floor_ratio
-        ):
+        if len(classes) >= min_guard_boxes and floor_mask.float().mean() > self.args.pseudo_max_floor_ratio:
             self.pseudo_stats[7] += 1
             return None
         elevators = torch.cat(elevators)
