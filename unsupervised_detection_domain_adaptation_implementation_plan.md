@@ -182,22 +182,22 @@ DDP 下先对计数求和，再由 rank 0 写入结果。
 
 ```bash
 python scripts/train_elevator.py \
-    --unsup \
-    --target-data scripts/elevator-target.yaml \
-    --batch 16 \
-    --epochs 100
+  --unsup \
+  --target-data scripts/elevator-target.yaml \
+  --batch 16 \
+  --epochs 100
 ```
 
 源数据每 epoch 随机划分：
 
 ```bash
 python scripts/train_elevator.py \
-    --unsup \
-    --batch 16 \
-    --unsup-ratio 0.25 \
-    --epochs 100 \
-    --patience 0 \
-    --save-period 10
+  --unsup \
+  --batch 16 \
+  --unsup-ratio 0.25 \
+  --epochs 100 \
+  --patience 0 \
+  --save-period 10
 ```
 
 `--patience 0` 关闭 EarlyStopping；`--save-period 10` 保留周期 checkpoint，`last.pt` 和 `best.pt` 仍照常更新。
