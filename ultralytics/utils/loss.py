@@ -550,9 +550,8 @@ class v8ElevatorDetectionLoss(v8DetectionLoss):
                 )
                 with torch.no_grad():
                     light_pt = light_prob * light_targets + light_neg_prob * (1.0 - light_targets)
-                    light_gamma = (
-                        self.light_asl_gamma_pos * light_targets
-                        + self.light_asl_gamma_neg * (1.0 - light_targets)
+                    light_gamma = self.light_asl_gamma_pos * light_targets + self.light_asl_gamma_neg * (
+                        1.0 - light_targets
                     )
                     light_weight = (1.0 - light_pt).pow(light_gamma)
                 auxiliary_loss[2] = -(light_weight * light_log_prob).mean()
