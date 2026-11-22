@@ -12,8 +12,7 @@ ROOT = Path(__file__).resolve().parents[1]
 os.environ["PYTHONPATH"] = os.pathsep.join(filter(None, (str(ROOT), os.environ.get("PYTHONPATH"))))
 sys.path.insert(0, str(ROOT))
 
-from ultralytics import YOLO  # noqa: E402
-
+from ultralytics import YOLO
 
 DEFAULT_DATA = Path("/mnt/yihao/codes/buttonDet/ultralytics-uda/scripts/elevator-button.yaml")
 DEFAULT_WEIGHTS = Path("/mnt/yihao/codes/buttonDet/ultralytics/weights/yolov8l.pt")
@@ -77,9 +76,7 @@ def main() -> None:
     pretrained_uda = args.unsup and not args.from_scratch
     optimizer = args.optimizer or ("AdamW" if pretrained_uda else "auto")
     lr0 = args.lr0 if args.lr0 is not None else (1e-4 if pretrained_uda else 0.01)
-    warmup_bias_lr = (
-        args.warmup_bias_lr if args.warmup_bias_lr is not None else (lr0 if pretrained_uda else 0.1)
-    )
+    warmup_bias_lr = args.warmup_bias_lr if args.warmup_bias_lr is not None else (lr0 if pretrained_uda else 0.1)
 
     model = YOLO(args.model)
     model.train(
