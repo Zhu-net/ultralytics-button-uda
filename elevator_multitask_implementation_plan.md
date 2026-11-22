@@ -100,18 +100,18 @@ Shared Floor Stem
 
 ### 4.3 楼层编码
 
-| 楼层 | Slot-1 | Slot-2 |
-| --- | ---: | ---: |
-| `-2` | `1 (-)` | `3 (2)` |
-| `-1` | `1 (-)` | `2 (1)` |
-| `G` | `2 (G)` | `0 (blank)` |
-| `1` | `0 (blank)` | `2 (1)` |
-| `2` | `0 (blank)` | `3 (2)` |
-| `9` | `0 (blank)` | `10 (9)` |
-| `10` | `3 (1)` | `1 (0)` |
-| `17` | `3 (1)` | `8 (7)` |
-| `20` | `4 (2)` | `1 (0)` |
-| `21` | `4 (2)` | `2 (1)` |
+| 楼层 |      Slot-1 |      Slot-2 |
+| ---- | ----------: | ----------: |
+| `-2` |     `1 (-)` |     `3 (2)` |
+| `-1` |     `1 (-)` |     `2 (1)` |
+| `G`  |     `2 (G)` | `0 (blank)` |
+| `1`  | `0 (blank)` |     `2 (1)` |
+| `2`  | `0 (blank)` |     `3 (2)` |
+| `9`  | `0 (blank)` |    `10 (9)` |
+| `10` |     `3 (1)` |     `1 (0)` |
+| `17` |     `3 (1)` |     `8 (7)` |
+| `20` |     `4 (2)` |     `1 (0)` |
+| `21` |     `4 (2)` |     `2 (1)` |
 
 不采用完整楼层 24 分类 Head，以保留字符共享能力并减少输出通道。
 
@@ -138,12 +138,12 @@ light_logit = Conv1x1(light_feature)
 
 ```python
 {
-    "boxes": boxes,          # B × (4 * reg_max) × N
-    "scores": button_logits, # B × 2 × N
+    "boxes": boxes,  # B × (4 * reg_max) × N
+    "scores": button_logits,  # B × 2 × N
     "feats": features,
-    "slot1": slot1_logits,   # B × 5 × N
-    "slot2": slot2_logits,   # B × 11 × N
-    "light": light_logits,   # B × 1 × N
+    "slot1": slot1_logits,  # B × 5 × N
+    "slot2": slot2_logits,  # B × 11 × N
+    "light": light_logits,  # B × 1 × N
 }
 ```
 
@@ -220,7 +220,7 @@ cls_ext = [button_cls, slot1, slot2, light, light_valid]
 现有增强路径筛选或拼接 `cls` 时即可同步处理全部属性。最终 `Format` 阶段拆分为：
 
 ```python
-batch["cls"]       # N × 1
+batch["cls"]  # N × 1
 batch["elevator"]  # N × 4: slot1, slot2, light, light_valid
 ```
 
